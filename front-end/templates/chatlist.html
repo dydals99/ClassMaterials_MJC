@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>챗봇 목록</title>
+    <link rel="stylesheet" href="/static/css/chatlist.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="create-card" onclick="location.href='studio.html'">
+            <div class="card-left">
+                <div class="icon-circle blue-bg">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div class="card-text">
+                    <h3 class="title">챗봇 만들기</h3>
+                    <p class="desc">특정 목적에 맞는 AI 에이전트를 만들어보세요.</p>
+                </div>
+            </div>
+            <i class="fa-solid fa-chevron-right arrow"></i>
+        </div>
+
+        <div id="chatbot-list">
+            <div class="bot-card">
+                <div class="card-left">
+                    <div class="icon-circle gray-bg">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="card-text">
+                        <h3 class="title">내 챗봇</h3>
+                        <p class="desc">내가 만든 챗봇</p>
+                    </div>
+                </div>
+                <div class="card-right">
+                    <button class="chat-btn" onclick="location.href='chatpage.html'">
+                        <i class="fa-regular fa-comments"></i> 채팅하기
+                    </button>
+                    <button class="more-btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                </div>
+            </div>
+            </div>
+        
+        <p class="footer-info">2개 중 1 - 2 표시 중</p>
+    </div>
+</body>
+</html>
