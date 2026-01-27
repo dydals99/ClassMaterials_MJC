@@ -9,7 +9,7 @@ psycopg2-binary
 pgvector
 python-dotenv
 
-# --- AI & LangChain 핵심 ---
+# --- AI & LangChain ---
 langchain
 langchain-core
 langchain-community
