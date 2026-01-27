@@ -5,17 +5,14 @@ const chatMessages = document.getElementById('chat-messages');
 const userInput = document.getElementById('user-input');
 const messagesContainer = document.getElementById('messages-container');
 
-const MESSAGE_LIMIT = 10; // 화면에 표시될 최대 메시지 수
+const MESSAGE_LIMIT = 10; 
 let isFirstMessage = true;
 
-/**
- * 1. 초기화 함수: 챗봇 정보 및 이전 대화 내역 로드
- */
+
 async function init() {
     if (!botId) return;
 
     try {
-        // 챗봇 기본 정보 로드
         const botRes = await fetch('/api/chatbots/');
         const bots = await botRes.json();
         const bot = bots.find(b => b.id == botId);
@@ -24,7 +21,6 @@ async function init() {
             document.getElementById('display-desc').innerText = bot.description;
         }
 
-        // 이전 대화 내역 로드 (ChatHistoryResponse 리스트 가정)
         const historyRes = await fetch(`/api/chat/history/${botId}`);
         const history = await historyRes.json();
 
@@ -45,9 +41,6 @@ async function init() {
     }
 }
 
-/**
- * 2. 메시지 전송 함수
- */
 async function sendMessage() {
     const text = userInput.value.trim();
     if (!text) return;
@@ -76,11 +69,8 @@ async function sendMessage() {
     }
 }
 
-/**
- * 3. 메시지 화면 표시 (10개 제한 및 타임스탬프 포함)
- */
+
 function appendMessage(role, text, timestamp) {
-    // 메시지 개수 제한 로직: 10개 이상이면 가장 첫 번째(가장 오래된) 노드 삭제
     while (chatMessages.children.length >= MESSAGE_LIMIT) {
         chatMessages.removeChild(chatMessages.firstChild);
     }
@@ -88,7 +78,6 @@ function appendMessage(role, text, timestamp) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${role}`;
     
-    // 메시지 내용 영역
     const contentDiv = document.createElement('div');
     contentDiv.className = "content";
     if (role === 'bot' && window.marked) {
@@ -97,7 +86,6 @@ function appendMessage(role, text, timestamp) {
         contentDiv.innerText = text;
     }
 
-    // 타임스탬프 영역
     const timeSpan = document.createElement('span');
     timeSpan.className = "timestamp";
     timeSpan.innerText = timestamp;
@@ -106,16 +94,13 @@ function appendMessage(role, text, timestamp) {
     messageDiv.appendChild(timeSpan);
     chatMessages.appendChild(messageDiv);
     
-    // 자동 스크롤
     messagesContainer.scrollTo({
         top: messagesContainer.scrollHeight,
         behavior: 'smooth'
     });
 }
 
-/**
- * 시간 포맷 헬퍼 (예: 오후 2:30)
- */
+
 function formatTimestamp(date) {
     return date.toLocaleTimeString('ko-KR', {
         hour: 'numeric',
@@ -124,7 +109,6 @@ function formatTimestamp(date) {
     });
 }
 
-// 이벤트 연결
 init();
 document.getElementById('send-trigger').onclick = sendMessage;
 userInput.onkeypress = (e) => { 
