@@ -16,16 +16,23 @@ class ChatService:
     def get_chat_response(self, db: Session, chatbot_id: int, user_message: str):
         chatbot = db.query(Chatbot).filter(Chatbot.id == chatbot_id).first()
         if not chatbot:
-            return "상담사를 찾을 수 없습니다."
+            return "응답할 수 없습니다."
 
-        #질문과 관련된 지식 검색
         context = self._get_relevant_context(chatbot_id, user_message)
-
-        #프롬프트 조합(기본 페르소나 + 검색된 지식)
-        system_prompt = chatbot.prompt or "너는 친절한 AI 상담사야."
-        
+        system_prompt = chatbot.prompt
         if context:
-            system_prompt += f"\n\n[학습된 지식 정보]\n{context}\n\n위의 정보를 참고하여 정확하게 답변해줘."
+            system_prompt = f"""
+                ### 지시 사항
+                1. 아래 제공된 [지식 정보]를 바탕으로만 답변하세요.
+                2. 답변은 반드시 마침표(.)로 끝나는 완성된 문장으로 마무리해야 합니다.
+                3. **중요**: "더 궁금한 점이 있으시면..." 같은 맺음말은 절대 생략하고 본론만 작성하세요.
+
+                ### [지식 정보]
+                {context}
+
+                ---
+                위 지침에 따라 유저 질문에 핵심 위주로 답변하세요. (마지막 문장은 반드시 마침표로 끝낼 것)
+            """
 
         messages = [
             SystemMessage(content=system_prompt),
@@ -37,7 +44,6 @@ class ChatService:
             temperature=chatbot.temperature,
             top_p=chatbot.top_p
         )
-
         self._save_history(db, chatbot_id, "user", user_message)
         self._save_history(db, chatbot_id, "assistant", ai_response.content)
 

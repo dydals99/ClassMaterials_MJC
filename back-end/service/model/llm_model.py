@@ -17,7 +17,7 @@ class GeminiClient:
             model=self.model_name,
             temperature=temperature,
             top_p=top_p,
-            max_output_tokens=1024,
+            max_output_tokens=2048,
         )
         
         return llm.invoke(messages)
