@@ -17,6 +17,5 @@ services:
     volumes:
       - ./back-end:/app
       - ./front-end:/front-end
-      - ./back-end/models/huggingface_cache:/app/models/huggingface_cache
     depends_on:
       - db

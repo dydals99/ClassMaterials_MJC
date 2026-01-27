@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from typing import List  # 추가
+from typing import List 
 from config.dbSettings import get_db
 from schemas.schemas import ChatRequest, ChatResponse, ChatHistoryResponse
 from models.models import ChatHistory  

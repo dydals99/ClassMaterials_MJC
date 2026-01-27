@@ -36,6 +36,8 @@
             </div>
             <div class="upload-zone">
                 <p id="file-status">챗봇에게 학습시킬 문서를 첨부해주세요.</p>
+                <div id="file-list" style="margin-top: 15px; font-size: 13px; color: #666; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;"></div>
+                
                 <input type="file" id="file-input" style="display:none;" accept=".pdf,.txt">
                 <button class="upload-btn" onclick="document.getElementById('file-input').click()">
                     <i class="fa-solid fa-upload"></i> 파일 가져오기

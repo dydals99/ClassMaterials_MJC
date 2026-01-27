@@ -1,19 +1,33 @@
 import uvicorn
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from fastapi.middleware.cors import CORSMiddleware
-
+from sqlalchemy import text
 from config.dbSettings import engine, Base
 from api.chat_list_router import router as list_router
 from api.chat_studio_router import router as studio_router
 from api.chat_router import router as chat_router
 
-Base.metadata.create_all(bind=engine)
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    
+    with engine.connect() as connection:
+        connection.execute(text("CREATE EXTENSION IF NOT EXISTS vector;"))
+        connection.commit()
+        print("DB Extension: pgvector 확인 완료")
+        
+        Base.metadata.create_all(bind=engine)
+        print("DB Tables: 모든 테이블 생성 및 동기화 완료")
+
+    yield
+    
+    print("서버가 종료되었습니다.")
 
 app = FastAPI(
     title="MY AI Chat Bot",
-    description="나만의 챗봇 만들기"
+    description="나만의 챗봇 만들기",
+    lifespan=lifespan
 )
 
 app.include_router(list_router)  

@@ -1,4 +1,4 @@
-# bac-kend/.dockerignore
+# back-end/.dockerignore
 models/huggingface_cache/
 __pycache__/
 *.pyc
