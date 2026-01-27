@@ -1,5 +1,7 @@
 .studio-wrapper {
     display: flex;
+    justify-content: center; 
+    align-items: center;  
     height: 100vh;
     font-family: sans-serif;
 }
@@ -9,13 +11,7 @@
     overflow-y: auto;
     border-right: 1px solid #eee;
 }
-.preview-panel {
-    width: 50%;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 .input-group {
     margin-bottom: 20px;
 }
@@ -82,7 +78,6 @@ input[type=range] {
     font-weight: bold;
     cursor: pointer;
 }
-/* 미리보기 채팅 스타일 */
 .chat-container {
     width: 100%;
     max-width: 500px;

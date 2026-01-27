@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat - Gemini</title>
+    <link rel="stylesheet" href="/static/css/chatpage.css">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+<nav class="common-nav">
+<button class="back-to-main" onclick="location.href='/'" title="메인 화면으로 이동">
+    <i class="fa-solid fa-house"></i>
+</button>
+</nav>
+    <div class="chat-wrapper" id="chat-wrapper">
+        <div class="bot-header" id="bot-header">
+            <div class="bot-info">
+                <div class="info-text">
+                    <h2 id="display-name">챗봇 이름</h2>
+                    <p id="display-desc">챗봇 설명</p>
+                </div>
+            </div>
+            <h1 class="greeting" id="greeting">무엇을 도와드릴까요?</h1>
+        </div>
+
+        <div class="messages-container" id="messages-container">
+            <div id="chat-messages" class="message-list"></div>
+        </div>
+
+        <div class="input-area">
+            <div class="input-container-wrapper">
+                <div class="input-container">
+                    <i class="fa-solid fa-paperclip icon-btn"></i>
+                    <input type="text" id="user-input" placeholder="메시지를 입력하세요." autocomplete="off">
+                    <i class="fa-solid fa-paper-plane send-btn" id="send-trigger"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/chatpage.js"></script>
+</body>
+</html>
