@@ -1,10 +1,28 @@
+# --- Web & Server ---
 fastapi
 uvicorn
-langchain
-langchain-openai
-langchain-community
-pgvector
+python-multipart
+
+# --- DB & ORM ---
+sqlalchemy
 psycopg2-binary
-pypdf
-python-multipart 
+pgvector
 python-dotenv
+
+# --- AI & LangChain 핵심 ---
+langchain
+langchain-core
+langchain-community
+langchain-google-genai
+langchain-postgres
+
+# --- 한국어 임베딩 & HuggingFace ---
+langchain-huggingface
+sentence-transformers
+transformers
+torch --index-url https://download.pytorch.org/whl/cpu
+accelerate
+
+# --- Documents & Utils ---
+pypdf
+tiktoken

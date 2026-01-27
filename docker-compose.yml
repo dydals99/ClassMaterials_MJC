@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   db:
     image: pgvector/pgvector:pg16
@@ -11,13 +9,14 @@ services:
       - ./data/postgres:/var/lib/postgresql/data
 
   app:
-    build: ./backend
+    build: ./back-end
     container_name: chatbot_app
     env_file: .env
     ports:
       - "8000:8000"
     volumes:
-      - ./backend:/app
+      - ./back-end:/app
       - ./front-end:/front-end
+      - ./back-end/models/huggingface_cache:/app/models/huggingface_cache
     depends_on:
       - db
