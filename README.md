@@ -7,8 +7,23 @@ RAG(Retrieval-Augmented Generation) 기반으로<br> PDF 문서를 벡터화하�
 이 프로젝트는 RAG 기반 챗봇입니다. 아래와 같이 구성되었습니다. 
 
 ### 개발 환경 
+#### Frontend
+* **HTML5**
+* **CSS3**
+* **JavaScript**
 
-#2496ED
+#### Backend
+* **Python**
+* **FastAPI**
+* **LangChain**
+
+#### Database
+* **PostgreSQL**
+* **pgvector**
+
+#### Infrastructure
+* **Docker**
+* **Docker Compose**
 
 ### 주요 기능
 - **RAG 기반 챗봇**: PDF 문서를 벡터화하여 저장하고 의미 기반 검색 수행
